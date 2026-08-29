@@ -132,21 +132,36 @@
 
     /* Focus visible for keyboard navigation inside slide */
     .slide-card :focus{ outline: 3px solid rgba(140,123,108,0.18); outline-offset:2px }
+
+    /* Accessible visually-hidden utility (keeps content available to AT) */
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Salta al contenuto</a>
 
   <main id="main" class="slide-card" role="main" aria-label="Slide — Il vecchio e il cane">
-    <figure class="image-container" aria-hidden="false">
+    <figure class="image-container" role="img" aria-labelledby="slide-image-caption">
       <!-- Prefer to provide a .webp plus fallback PNG/JPG. Rename the file to remove spaces (e.g. vecchio-col-cane.png). -->
       <picture>
         <!-- Example: if you export a webp version, it will be used by supporting browsers -->
-        <source type="image/webp" srcset="images/vecchio-col-cane-1600.webp 1600w, images/vecchio-col-cane-800.webp 800w" sizes="(max-width:1200px) 45vw, 600px">
+        <source type="image/webp" srcset="images/vecchio-col-cane-1600.webp 1600w, images/vecchio-col-cane-800.webp 800w, images/vecchio-col-cane-400.webp 400w" sizes="(max-width:1200px) 45vw, 600px">
         <img src="images/vecchio-col-cane.png" alt="Un vecchio cammina nei campi con il suo cane al fianco" loading="lazy" decoding="async" width="1600" height="900">
       </picture>
-      <!-- Optional caption (hidden visually if you prefer): -->
-      <figcaption style="display:none">Il vecchio e il suo cane nei campi</figcaption>
+      <!-- Keep the caption available to assistive tech (visually-hidden if you don't want it visible) -->
+      <figcaption id="slide-image-caption" class="visually-hidden">
+        Il vecchio e il suo cane nei campi
+      </figcaption>
     </figure>
 
     <section class="text-container" aria-labelledby="slide-title">
